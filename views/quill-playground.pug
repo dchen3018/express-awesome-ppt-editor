@@ -1,0 +1,10 @@
+extend layout
+
+block content
+  h1= title
+  div.container#editor-container
+    p Gandalf the grey
+  div.container.javascript#delta-container
+  //link css and js of the page
+  link(rel='stylesheet', href='/stylesheets/quill-playground.css')
+  script(type='module' src='/javascripts/quill-playground.js')

@@ -1,0 +1,16 @@
+.container {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+  height: 400px;
+  width: 50%;
+}
+.container:first-child {
+  border-right: 0px;
+}
+#delta-container {
+  font-family: monospace;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}

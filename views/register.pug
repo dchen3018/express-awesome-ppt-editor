@@ -1,0 +1,27 @@
+extend layout
+
+block content
+  div.container-sm
+    div.card
+      div.card-header 
+        div.row(style="justify-content:space-between;display:flex;align-item:flex-start;padding:1rem")
+          h5 Register
+          button(type="button" id="register-close-btn")
+            span(aria-hidden="true") &times;  
+        p already have an account? 
+          a(href="#") login
+      div.card-body
+        form
+          div.form-group
+            label Email address
+            input(type="email" class="form-control" id="register-username" aria-describedby="emailHelp")
+            small#emailHelp.form-text.text-muted The email address will be served as your user name
+          div.form-group
+            label Password
+            input(type="password" class="form-control" id="register-password" aria-describedby="passwordHelp")
+            small#passwordHelp.form-text.text-muted we have password requirement
+          div.form-group
+            label Re-enter the password
+            input(type="password" class="form-control" id="register-password-re-enter" aria-describedby="passwordReEnterHelp")
+            small#passwordReEnterHelp.form-text.text-muted re-entery your password
+          button(type="button" class="btn btn-primary" id="register-submit-button") Submit
