@@ -20,7 +20,7 @@ var mongoose = require('mongoose');
 //var dev_db_url = 'mongodb+srv://cooluser:coolpassword@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true'
 //var mongoDB = process.env.MONGODB_URI || dev_db_url;
 let server = '127.0.0.1:27017';
-let database = 'newDataBase';
+let database = 'express-editor';
 var mongoDB = `mongodb://${server}/${database}`;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
