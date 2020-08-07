@@ -1,0 +1,37 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', href='/stylesheets/album.css')
+  script(type='module' src='javascripts/album.js')
+  
+block content
+  nav(class="navbar navbar-expand-md navbar-dark bg-dark mb-4")
+    a(class="navbar-brand" href="#") Album
+    button(class="navbar-toggler" type="button" data-toggle="collapse" 
+          data-target="#navbarCollapse" aria-controls="navbarCollapse" 
+          aria-expanded="false" aria-label="Toggle navigation")        
+        span(class="navbar-toggler-icon")
+    div(class="collapse navbar-collapse" id="navbarCollapse")
+      ul(class="navbar-nav mr-auto")
+        li(class="nav-item active")
+          a(class="nav-link" href="#" id="add-img") All
+            span(class="sr-only") (current)
+        li(class="nav-item")
+          a(class="nav-link" href="#" id="upload-img") Image
+        li(class="nav-item")
+          a(class="nav-link" href="#" id="download-img") Video
+        
+      form(class="form-inline mt-2 mt-md-0")
+          label(for="img-selection" class="text-light") Add Image
+          input(type="file" class="form-control invisible" id="img-selection" accept=".jpg, .jpeg, .png" multiple)
+        
+            
+  main(role="main")
+    div(class="album py-5 bg-light")
+      div(class="container")
+        div(class="row" id="img-list")
+        
+              
+    
+
+  

@@ -6,12 +6,9 @@ var user_controller = require('../controllers/userControler');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('landingPage', { title: 'Landing Page' });
+  res.render('landingPage', { title: 'An Awesome Eidtor' });
 });
 
-router.get('/register', function(req, res){
-  res.render('register')
-})
 
 router.get('/main-folder', function(req, res) {
 
@@ -20,12 +17,28 @@ router.get('/main-folder', function(req, res) {
 });
 
 router.post('/login', function(req,res,next){
-  console.log('user name', req.body.username);
-  console.log('password', req.body.password)
-  req.session.key = req.body.username
+  // req.session.user = req.body.username
+  // req.ression.password = req.body.password
+
   res.send('ok')
 })
 
-router.post('/register', user_controller.user_create_post)
+//some test pages
+router.get('/drag-and-drop-test', function(req, res) {
+  res.render('drag-and-drop-test')
+})
+
+router.get('/local_file', function(req, res) {
+  res.render('local_file')
+})
+
+router.post('/upload', function(req,res) {
+  console.log(req.fields)
+})
+
+router.get('/album', function(req, res) {
+  res.render('album')
+})
+
 
 module.exports = router;

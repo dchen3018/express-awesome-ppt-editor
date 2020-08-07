@@ -2,22 +2,27 @@ doctype html
 html
   head
     title= title
-
-    //add css link
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    
+    block styles
     link(rel='stylesheet', href='/jquery-ui-dist/jquery-ui.min.css')
     link(rel='stylesheet', href='/bootstrap/dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='/quill/dist/quill.bubble.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     //link(rel='stylesheet', href='/stylesheets/test.css')
-
-
-    //add external js link
-    script(src='/jquery/jquery.min.js')
-    script(src='/bootstrap/dist/js/bootstrap.min.js')
-    script(src='/popper.js//dist/umd/popper.min.js')
-    script(src='/jquery-ui-dist/jquery-ui.min.js')
-    script(src='/quill/dist/quill.min.js')
-    script(type='module' src='javascripts/landingPage.js')
-    script(type='module' src='/javascripts/register.js')
+      
+    
+    
   body
     block content
+    
+    block scripts
+      script(src='/jquery/jquery.min.js')
+      //script(src='/bootstrap/dist/js/bootstrap.min.js')
+      //script(src='/popper.js/dist/umd/popper.min.js')
+      script(src='/bootstrap/dist/js/bootstrap.bundle.js')
+      script(src='/jquery-ui-dist/jquery-ui.min.js')
+      script(src='/quill/dist/quill.min.js')
+    //script(type='module' src='/javascripts/register.js')
+    

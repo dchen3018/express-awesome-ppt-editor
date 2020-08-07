@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 An Awesome Editor
+  div.btn-group
+    button#btn-add-widget.btn.btn-primary Add
+    button#btn-remove-widget.btn.btn-primary Remove
+    button#btn-save.btn.btn-primary Save
+    button#btn-load.btn.btn-primary Load
+  div#editor-board.editor-board
+
+  //link page css and js
+  link(rel='stylesheet', href='/stylesheets/editor.css')
+  script(type='module' src='/javascripts/editor.js')

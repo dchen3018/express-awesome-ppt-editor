@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  script(src='/javascripts/drag-and-drop-test.js')
+  link(rel='stylesheet', href='/stylesheets/drag-and-drop-test.css')
+  table#holder
+    tr
+      td Drop files here
+    tr
+      td
+        ul#fileList

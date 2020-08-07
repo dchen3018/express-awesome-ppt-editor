@@ -80,6 +80,38 @@ function removeWidget(){
 //   })
 // }
 
+function saveFile(){
+  $("#btn-save").on("click", function(){
+      let arr = [];
+      $(".widget").each(function(index){
+        let widget_id = $(this).attr("id");
+        let widget_class = $(this).attr("class");
+        let widget_style = $(this).attr("style");
+
+        //widget_id = "widget-1"
+        let id_pattern = /\d+/g;
+        let _id = widget_id.match(id_pattern);
+
+        let editor_id = 'quill-editor-' + _id
+        let widget_content = window[editor_id].getContents()
+        let obj = {
+          id : widget_id,
+          class: widget_class,
+          style: widget_style,
+          content: widget_content
+        }
+
+        let obj_string = JSON.stringify(obj)
+
+        $.post('/editor/file/testFile', {content: obj_string})
+
+
+      })
+
+
+  })
+}
+
 function saveInDatabase() {
   $("#btn-save").on("click", function(){
       console.log('save page in database')

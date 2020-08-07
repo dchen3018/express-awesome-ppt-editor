@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  style.
+    html {
+      font-family: sans-serif;
+    }
+    div.container {
+      background-color: rgb(240,248,255);
+    }
+    
+  script.
+    $(function(){
+      var input = $('input#selectFiles');
+      //input.css({opacity: 0});
+      input.on('change', insertImg);
+      
+      function insertImg(){
+        var fileList = input[0].files
+        
+        if(fileList.length !== 0){
+          for(const file of fileList) {
+            const listItem = $('<li></li>');
+            const image = $('<img></img>');
+            image.attr({src: URL.createObjectURL(file)})
+            listItem.append(image);
+            $('ol.image_list').append(listItem);
+          }        
+        }
+      }
+    })
+  div.container
+    div.img
+      ol.image_list
+    div.row
+      form
+        div.form-group
+          label(for="selectFiles") Choose file
+          input(type="file" class="form-control" id="selectFiles" name="selectFile" accept=".jpg, .jpeg, .png" style={opacity: 0} multiple)
+      button(type="submit" class="btn btn-primary") Upload

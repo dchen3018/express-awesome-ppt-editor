@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var formidable = require('express-formidable');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -9,9 +10,9 @@ var redis = require('redis');
 var redisStore = require('connect-redis')(session);
 var redisClient = redis.createClient();
 
-var userRouter = require('./routes/users');
 var mainRouter = require('./routes/main');
-
+var registerRouter = require('./routes/register')
+var editorRouter = require('./routes/editor')
 
 var app = express();
 
@@ -24,8 +25,8 @@ let database = 'express-editor';
 var mongoDB = `mongodb://${server}/${database}`;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+var connection = mongoose.connection;
+connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,9 +45,11 @@ app.use(session({
   resave: false,
   cookie: {sameSite: 'strict'}  //to remove cookie sameSite warning
 }));
+app.use(formidable());
 
 app.use('/', mainRouter);  //main page of the web site & login page
-app.use('/folder', userRouter);  //user's main page (folder) & file page
+app.use('/register', registerRouter);
+app.use('/editor', editorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

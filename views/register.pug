@@ -1,6 +1,7 @@
 extend layout
 
 block content
+  script(type='module' src='/javascripts/register.js')
   div.container-sm
     div.card
       div.card-header 
@@ -13,9 +14,13 @@ block content
       div.card-body
         form
           div.form-group
+            label User Name
+            input(type="text" class="form-control" id="register-username")
+            small#username.form-text.text-muted give a name you wish to show in the main page
+          div.form-group
             label Email address
-            input(type="email" class="form-control" id="register-username" aria-describedby="emailHelp")
-            small#emailHelp.form-text.text-muted The email address will be served as your user name
+            input(type="email" class="form-control" id="register-email" aria-describedby="emailHelp")
+            small#emailHelp.form-text.text-muted you must give a unique email address to register an account
           div.form-group
             label Password
             input(type="password" class="form-control" id="register-password" aria-describedby="passwordHelp")
@@ -25,3 +30,6 @@ block content
             input(type="password" class="form-control" id="register-password-re-enter" aria-describedby="passwordReEnterHelp")
             small#passwordReEnterHelp.form-text.text-muted re-entery your password
           button(type="button" class="btn btn-primary" id="register-submit-button") Submit
+
+
+  

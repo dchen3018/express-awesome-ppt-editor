@@ -1,0 +1,132 @@
+extends layout
+
+block content
+  style.
+    html {
+      font-family: sans-serif;
+    }
+    
+    form {
+      width: 600px;
+      background: #ccc;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid black;
+    }
+
+    form ol {
+      padding-left: 0;
+    }
+
+    form li, div > p {
+      background: #eee;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      list-style-type: none;
+      border: 1px solid black;
+    }
+
+    form img {
+      height: 64px;
+      order: 1;
+    }
+
+    form p {
+      line-height: 32px;
+      padding-left: 10px;
+    }
+
+    form label, form button {
+      background-color: #7F9CCB;
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px ridge black;
+      font-size: 0.8rem;
+      height: auto;
+    }
+
+    form label:hover, form button:hover {
+      background-color: #2D5BA3;
+      color: white;
+    }
+
+    form label:active, form button:active {
+      background-color: #0D3F8F;
+      color: white;
+    }  
+    
+  script.
+    $(function(){
+      const input = $('input#image_uploads')
+      const preview = $('.preview');
+
+      input.css({opacity: 0});  //set input element invisible, user could its label
+      input.on('change', updateImageDisplay);
+      
+      function updateImageDisplay() {
+        preview.empty();  //remove all child nodes 
+        const fileList = input[0].files
+        if(fileList.length === 0) {
+          const para = $("<p></p>").text("No files currently selected for upload");
+          preview.append(para);
+        } else {
+          const list =$('<ol></ol>');
+          preview.append(list);
+
+          for(const file of fileList) {
+            const listItem = $('<li></li>');  
+            const para = $('<p></p>'); 
+
+            if(validFileType(file)) {
+              para.text(`File name ${file.name}, file size ${returnFileSize(file.size)}.`);
+              const image = $('<img></img>'); 
+              image.attr({src: URL.createObjectURL(file)})
+
+              listItem.append(image);
+              listItem.append(para);
+            } else {
+              para.text = `File name ${file.name}: Not a valid file type. Update your selection.`;
+              listItem.append(para);
+            }
+
+            list.append(listItem);
+          }
+        }
+      }
+      const fileTypes = [
+          'image/apng',
+          'image/bmp',
+          'image/gif',
+          'image/jpeg',
+          'image/pjpeg',
+          'image/png',
+          'image/svg+xml',
+          'image/tiff',
+          'image/webp',
+          `image/x-icon`
+      ];
+
+      function validFileType(file) {
+        return fileTypes.includes(file.type);
+      }
+
+      function returnFileSize(number) {
+        if(number < 1024) {
+          return number + 'bytes';
+        } else if(number > 1024 && number < 1048576) {
+          return (number/1024).toFixed(1) + 'KB';
+        } else if(number > 1048576) {
+          return (number/1048576).toFixed(1) + 'MB';
+        }
+      }          
+    })
+    
+  form
+    form
+      div
+        label(for="image_uploads") Choose images
+        input(type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple)
+      div.preview
+        p No files currently selected for upload
+        

@@ -20,7 +20,7 @@ block content
           li.nav-item
             a.nav-link(href="#service") Service
           li.nav-item
-            button(type=button class="btn btn-primary" data-toggle="modal" data-target="#signInModal") Sign In
+            button(type=button id="landing-page-sign-in" class="btn btn-primary" data-toggle="modal" data-target="#signInModal") Sign In
   
   //login modal section
   div(class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLablel" aria-hidden="true")
@@ -31,15 +31,15 @@ block content
           button(type="button" class="class" id="login-modal-close-btn" data-dismiss="modal" aria-label="Close")
             span(aria-hidden="true") &times;
         div.modal-body
-          form(action="#" method="POST")
+          form
             div.form-group
               label(for="username" class="col-form-label") User Name
-              input(type="text" name="username" id="login-modal-input-name" 
-                placeholder="your email or phone number" style="width:100%")
+              input(type="email" name="username" id="login-modal-input-name" 
+                placeholder="your email" style="width:100%")
             div.form-group
               label(for="password" class="col-for-label") Password
               input(type="text" name="password" id="login-modal-input-password" 
-                placeholder="your password" style="width:100%")
+                placeholder="" style="width:100%")
           
         div.modal-footer(style="justify-content:space-between")
             a#login(href="#") Sign In
